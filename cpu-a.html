@@ -278,7 +278,8 @@
         }
 
         .screenshot-item {
-            width: 220px; /* The Fix: Locks the width so they don't explode! */
+            width: auto;
+            max-width: 220px; /* The Fix: Locks the width so they don't explode! */
             height: auto; /* Keeps your screenshot proportions absolutely perfect */
             max-height: 450px; /* Failsafe limit */
             border-radius: 12px; 
@@ -286,7 +287,7 @@
             border: 1px solid rgba(0,0,0,0.05); 
             flex-shrink: 0;
             scroll-snap-align: start;
-            object-fit: contain; /* Ensures the whole screenshot is always visible */
+            object-fit: cover; /* contain Ensures the whole screenshot is always visible */
         }
 
         /* Horizontal Screenshot Slider */
