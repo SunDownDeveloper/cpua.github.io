@@ -45,23 +45,215 @@
             box-sizing: border-box; /* This ensures the padding doesn't accidentally widen the screen */
         }
         
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 40px 0;
+        /* --- App Store Header Banner --- */
+        .app-store-banner {
+            width: 100%;
+            height: 180px; /* Adjust if you want the banner taller/shorter */
+            background-image: url('CPU A web ss/your-banner-image.jpg'); /* Use your dark CapCut banner here! */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 20px;
         }
-        .app-icon {
-            width: 120px;
-            border-radius: 24px;
-            box-shadow: var(--card-shadow);
+
+        .app-store-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .app-title {
-            font-size: 2.5em;
-            margin: 10px 0;
+
+        /* --- App Store Main Info --- */
+        .app-store-info {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .app-store-icon {
+            width: 118px;
+            height: 118px;
+            border-radius: 22px; /* iOS App Store squircle curve */
+            box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.05);
+            background: #fff;
+            object-fit: cover;
+        }
+
+        .app-store-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4px 0;
+            flex-grow: 1;
+        }
+
+        .app-store-title {
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--text-main);
+            margin: 0 0 2px 0;
+            line-height: 1.1;
         }
-        .header p {
-            color: var(--text-muted);
+
+        .app-store-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #8e8e93; /* Apple standard grey */
+            margin: 0;
+        }
+
+        .app-store-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+
+        .app-btn-install {
+            background-color: #007aff; /* Apple standard blue */
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .app-btn-share {
+            background: none;
+            border: none;
+            color: #007aff;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- App Store Stats Scroll Row --- */
+        .app-stats-row {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e5e5ea;
+            scrollbar-width: none;
+        }
+        .app-stats-row::-webkit-scrollbar { display: none; }
+
+        .app-stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-width: 80px;
+            border-right: 1px solid #e5e5ea;
+            padding-right: 20px;
+        }
+        
+        /* Removes the line from the very last item */
+        .app-stat-item:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8e8e93; /* Set to grey like the reference image */
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-sub {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #8e8e93;
+        }
+
+        .star-rating {
+            color: #8e8e93;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* --- App Store Update Log --- */
+        .app-update-log {
+            margin-bottom: 30px;
+        }
+
+        .update-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .update-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .update-arrow {
+            color: #c7c7cc;
+            font-weight: bold;
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #8e8e93;
+            margin-bottom: 12px;
+        }
+
+        .update-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: var(--text-main);
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Truncates text after 3 lines like the app store */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .update-more {
+            color: #007aff;
+            background: var(--bg-color); /* Blends with your background */
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding-left: 10px;
+            cursor: pointer;
         }
 
         /* Horizontal Screenshot Slider */
