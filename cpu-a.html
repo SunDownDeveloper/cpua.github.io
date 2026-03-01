@@ -355,13 +355,20 @@
         }
 
         .review-card {
-            background-color: rgba(142, 142, 147, 0.12); /* Native iOS adaptive card background */
+            background-color: rgba(142, 142, 147, 0.12); 
             border-radius: 16px;
             padding: 20px;
-            min-width: 85%; /* Enables the 'peek' effect for swiping */
+            
+            /* The Sizing Fix */
+            width: 85%; 
             max-width: 350px; 
+            box-sizing: border-box; /* Forces the padding to stay INSIDE the 85% width! */
+            
             flex-shrink: 0;
-            scroll-snap-align: center;
+            
+            /* The Alignment Fix */
+            scroll-snap-align: start; /* Snaps perfectly to the left edge instead of the center */
+            
             display: flex;
             flex-direction: column;
             gap: 12px;
