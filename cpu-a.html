@@ -270,6 +270,67 @@
             box-shadow: var(--card-shadow);
         }
 
+        /* --- Expandable About Card --- */
+        .about-card {
+            background: var(--surface-color);
+            padding: 24px;
+            border-radius: 16px;
+            margin: 15px 0 25px 0;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--accent);
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+        .about-card:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+        
+        .about-content {
+            font-size: 0.89em; /* Your requested text size */
+            line-height: 1.6;
+            color: var(--text-main);
+            max-height: 120px; /* How much text shows initially */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .about-content.expanded {
+            max-height: 2500px; /* Expands to fit all text */
+        }
+        
+        /* Cleans up the paragraph spacing inside the card */
+        .about-content p {
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        
+        /* The fade effect at the bottom when collapsed */
+        .fade-out {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, var(--surface-color));
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .about-content.expanded .fade-out {
+            opacity: 0; /* Hides the fade when opened */
+        }
+        
+        /* The Show More / Show Less text */
+        .expand-label {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 15px;
+            display: block;
+            transition: color 0.2s;
+        }
+
         /* --- App Store Ratings & Reviews --- */
         .app-reviews-section {
             margin-top: 32px;
@@ -357,7 +418,7 @@
         .review-card {
             background-color: rgba(142, 142, 147, 0.12); 
             border-radius: 16px;
-            padding: 20px;
+            padding: 08px;
             
             /* The Sizing Fix */
             width: 85%; 
@@ -397,67 +458,6 @@
             color: var(--text-main);
             line-height: 1.4;
             margin: 0;
-        }
-
-        /* --- Expandable About Card --- */
-        .about-card {
-            background: var(--surface-color);
-            padding: 24px;
-            border-radius: 16px;
-            margin: 15px 0 25px 0;
-            box-shadow: var(--card-shadow);
-            border-left: 4px solid var(--accent);
-            cursor: pointer;
-            position: relative;
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
-        }
-        .about-card:hover {
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-        }
-        
-        .about-content {
-            font-size: 0.89em; /* Your requested text size */
-            line-height: 1.6;
-            color: var(--text-main);
-            max-height: 120px; /* How much text shows initially */
-            overflow: hidden;
-            position: relative;
-            transition: max-height 0.4s ease-in-out;
-        }
-        .about-content.expanded {
-            max-height: 2500px; /* Expands to fit all text */
-        }
-        
-        /* Cleans up the paragraph spacing inside the card */
-        .about-content p {
-            margin-top: 0;
-            margin-bottom: 14px;
-        }
-        
-        /* The fade effect at the bottom when collapsed */
-        .fade-out {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
-            background: linear-gradient(transparent, var(--surface-color));
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        .about-content.expanded .fade-out {
-            opacity: 0; /* Hides the fade when opened */
-        }
-        
-        /* The Show More / Show Less text */
-        .expand-label {
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 0.9em;
-            text-align: center;
-            margin-top: 15px;
-            display: block;
-            transition: color 0.2s;
         }
 
         /* Google Play Badge */
