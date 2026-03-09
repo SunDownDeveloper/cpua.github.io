@@ -324,11 +324,14 @@
         .screenshots-container::-webkit-scrollbar { display: none; }
 
         .screenshot {
-            width: 180px;
-            height: 360px;
+            width: auto;
+            max-width: 220px; /* The Fix: Locks the width so they don't explode! */
+            height: auto; /* Keeps your screenshot proportions absolutely perfect */
+            max-height: 450px; /* Failsafe limit */
             background-color: var(--border-color);
             border-radius: 12px;
             flex-shrink: 0;
+            scroll-snap-align: start;
             object-fit: cover;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
