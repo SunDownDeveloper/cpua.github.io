@@ -66,6 +66,42 @@
             /* box-shadow: 0 0 20px rgba(0,0,0,0.05); <-- DELETED */
         }
 
+        /* ==========================================
+           FLOATING BACK BUTTON
+           ========================================== */
+        .feature-graphic-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 40px;
+            height: 40px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 10;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #F8F9FA;
+        }
+
+        .back-icon {
+            width: 24px;
+            height: 24px;
+            fill: #202124; /* Keeps the arrow dark grey/black even in dark mode */
+        }
+
         /* Feature Graphic */
         .feature-graphic {
             width: 100%;
@@ -379,8 +415,15 @@
 <body>
 
     <div class="container">
-        <div class="feature-graphic"></div>
-
+        <div class="feature-graphic-wrapper">
+            <a href="javascript:history.back()" class="back-btn" title="Go Back">
+                <svg class="back-icon" viewBox="0 0 24 24">
+                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+                </svg>
+            </a>
+            
+            <div class="feature-graphic"></div>
+        </div>
         <div class="app-header">
             <img src="MLBB%20VS/Picsart_26-02-visual-studio.png" alt="App Icon" class="app-icon">
             <div class="app-title-area">
