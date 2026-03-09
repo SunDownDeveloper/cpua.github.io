@@ -9,7 +9,7 @@
            AUTO LIGHT/DARK THEME VARIABLES
            ========================================== */
         :root {
-            --bg-color: #F8F9FA;
+            --bg-color: #FFFFFF; /* Changed to pure white to match container */
             --container-bg: #FFFFFF;
             --text-primary: #202124;
             --text-secondary: #5F6368;
@@ -28,8 +28,8 @@
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #121212;
-                --container-bg: #1B1B1B;
+                --bg-color: #121212; /* Matches container for a seamless dark void */
+                --container-bg: #121212; 
                 --text-primary: #E3E3E3;
                 --text-secondary: #A0A0A0;
                 --border-color: #2A324A;
@@ -37,14 +37,14 @@
                 --btn-bg: #007BFF;
                 --btn-hover: #3395ff;
                 --btn-text: #FFFFFF;
-                --tutorial-bg: #242424;
+                --tutorial-bg: #1B1B1B;
                 --card-border-left: #007BFF;
-                --fade-gradient: linear-gradient(to bottom, rgba(27,27,27,0), rgba(27,27,27,1));
+                --fade-gradient: linear-gradient(to bottom, rgba(18,18,18,0), rgba(18,18,18,1));
                 --stars-empty: #5F6368;
                 --icon-color: #7DD3FC;
             }
         }
-
+        
         /* ==========================================
            BASE LAYOUT (1200px Max Width)
            ========================================== */
@@ -63,7 +63,7 @@
             padding: 0 10px;
             background-color: var(--container-bg);
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            /* box-shadow: 0 0 20px rgba(0,0,0,0.05); <-- DELETED */
         }
 
         /* Feature Graphic */
