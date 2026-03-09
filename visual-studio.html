@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Visual Studio - Closed Beta</title>
+    <style>
+        /* Premium Dark Theme */
+        body {
+            background-color: #121212;
+            color: #E3E3E3;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1B1B1B;
+            min-height: 100vh;
+        }
+
+        /* Feature Graphic */
+        .feature-graphic {
+            width: 100%;
+            height: 250px;
+            background-color: #1B2236;
+            background-image: url('MLBB%20VS/feature-graphic.jpg'); /* Banner Image Linked Here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* App Header */
+        .app-header {
+            display: flex;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background-color: #2A324A;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .app-title-area h1 {
+            font-size: 24px;
+            color: #FFFFFF;
+            margin: 0 0 4px 0;
+        }
+
+        .app-title-area p {
+            font-size: 14px;
+            color: #A0A0A0;
+            margin: 0;
+        }
+
+        .dev-name {
+            color: #7DD3FC;
+            font-weight: 500;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            border-bottom: 1px solid #2A2A2A;
+            text-align: center;
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        .stars {
+            color: #888888;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* Action Area */
+        .action-area {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .btn-install {
+            display: inline-block;
+            width: 100%;
+            padding: 14px 0;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+        }
+
+        .btn-install:hover {
+            background-color: #0056b3;
+        }
+
+        /* Mini Tutorial Box */
+        .tutorial-box {
+            background-color: #242424;
+            border-left: 4px solid #F59E0B;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #D1D5DB;
+        }
+
+        .tutorial-box strong {
+            color: #FFFFFF;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tutorial-box ol {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .tutorial-box li {
+            margin-bottom: 6px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+            border-top: 8px solid #121212;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Horizontal Scrolling Screenshots */
+        .screenshots-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .screenshots-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot {
+            width: 140px;
+            height: 280px;
+            background-color: #2A324A;
+            border-radius: 12px;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        /* Details / Expandable */
+        details {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #B0B0B0;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #FFFFFF;
+            cursor: pointer;
+            outline: none;
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .about-content h3 {
+            color: #FFFFFF;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Reviews placeholder */
+        .empty-reviews {
+            text-align: center;
+            padding: 30px 0;
+            color: #888888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="feature-graphic"></div>
+
+        <div class="app-header">
+            <img src="MLBB%20VS/icon.png" alt="App Icon" class="app-icon"> <div class="app-title-area">
+                <h1>MLBB Visual Studio</h1>
+                <p class="dev-name">SunDownDeveloper</p>
+                <p>Premium Customization Engine.</p>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-value">-</div>
+                <div class="stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">3+</div>
+                <div class="stat-label">Years Old</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">No. -</div>
+                <div class="stat-label">Visual Tools</div>
+            </div>
+        </div>
+
+        <div class="action-area">
+            <a href="https://chat.whatsapp.com/LI7dESj6BQf1v4u617iYAV?mode=hqctcla" class="btn-install" target="_blank">Join Closed Testing</a>
+            
+            <div class="tutorial-box">
+                <strong>How to participate in the Beta:</strong>
+                <ol>
+                    <li>Tap the button above to join the official WhatsApp Beta group.</li>
+                    <li>Drop your Google account email in the group chat.</li>
+                    <li>Within 5 minutes, you will be added to the official testing list.</li>
+                    <li><strong>Important:</strong> Ensure the email you provide is currently signed into your browser (to accept the invite) AND signed into your Google Play Store app to successfully download the beta!</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Update Log ></div>
+            <details>
+                <summary>Version 1.0.0 beta <span style="float: right; color: #888; font-weight: normal; font-size: 12px;">Just now</span></summary>
+                <p>• Initial BETA release of MLBB Visual Studio.<br>
+                • Added Dual-Injection Engine (SAF & Shizuku) support.<br>
+                • Implemented dynamic tablet-proof UI and ultimate Control Center.</p>
+            </details>
+        </div>
+
+        <div class="section">
+            <div class="screenshots-container">
+                <img src="MLBB%20VS/Screenshot_1.jpg" class="screenshot" alt="Screenshot 1">
+                <img src="MLBB%20VS/Screenshot_2.jpg" class="screenshot" alt="Screenshot 2">
+                <img src="MLBB%20VS/Screenshot_3.jpg" class="screenshot" alt="Screenshot 3">
+                <img src="MLBB%20VS/Screenshot_4.jpg" class="screenshot" alt="Screenshot 4">
+                <img src="MLBB%20VS/Screenshot_5.jpg" class="screenshot" alt="Screenshot 5">
+                <img src="MLBB%20VS/Screenshot_6.jpg" class="screenshot" alt="Screenshot 6">
+                <img src="MLBB%20VS/Screenshot_7.jpg" class="screenshot" alt="Screenshot 7">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">About this app ></div>
+            <details>
+                <summary>Read full description</summary>
+                <div class="about-content">
+                    <p>🎨 <strong>Enter the Studio. Remaster Your Experience.</strong></p>
+                    <p>Welcome to MLBB Visual Studio, the ultimate premium customization engine built specifically for players who want to elevate their in-game aesthetics. Unlock breathtaking visual effects, custom hero skins, and epic recall animations—all rendered 100% locally on your device with zero risk to your account.</p>
+                    <p>Designed by SunDownDeveloper with the same precision and AAA-polish as CPU A, this tool is built for speed, safety, and a flawless user experience.</p>
+                    
+                    <h3>🔥 KEY FEATURES</h3>
+                    <p><strong>🚀 Advanced Dual-Injection Engine</strong><br>
+                    Whether you are on an older device or running the latest Android OS, our app adapts. Featuring a revolutionary dual-engine architecture, MLBB Visual Studio utilizes both SAF (Storage Access Framework) and Shizuku (Wireless Debugging) for lightning-fast, flawless visual deployment. No PC and no traditional root required!</p>
+
+                    <p><strong>✨ High-Fidelity Customization</strong><br>
+                    Completely transform your gameplay. Inject highly detailed hero skins, vibrant custom maps, flashy recall animations, emotes, and elimination effects directly into your local game directory.</p>
+
+                    <p><strong>🛡️ 100% Safe & Local (Zero Ban Risk)</strong><br>
+                    Play with absolute peace of mind. MLBB Visual Studio modifies only the visual assets displayed on your personal screen. It does not alter core gameplay mechanics, inject cheats, or modify server data. You get to enjoy the premium visuals, but the competitive balance remains completely untouched.</p>
+
+                    <p><strong>🛠️ The Ultimate Control Center</strong><br>
+                    Manage your mods like a pro developer. Our deeply integrated, cyberpunk-themed Control Center features a highly intelligent "Remove Injected Skin" utility to safely wipe mods, built-in video tutorials, and dedicated tools to fix stuck loading screens or full storage issues with a single tap.</p>
+
+                    <p><strong>📱 Tablet-Proof Dynamic UI</strong><br>
+                    Experience a breathtaking, dark-neon aesthetic that dynamically scales to look absolutely gorgeous on any screen size, from compact phones to massive gaming tablets.</p>
+
+                    <h3>⚠️ IMPORTANT DISCLAIMER:</h3>
+                    <p>MLBB Visual Studio is a third-party local visual modification tool. It is not affiliated with, endorsed by, or officially connected to Moonton or Mobile Legends: Bang Bang. All injected files are local aesthetic modifications only, visible strictly to the user, and provide absolutely no in-game competitive advantage (no damage hacks, no map hacks).</p>
+                    <p>Ready to upgrade your visuals? Download MLBB Visual Studio today and completely redefine your game!</p>
+
+                    <h3>🙌 Feedback & Support</h3>
+                    <p>Your feedback plays an important role in shaping MLBB Visual Studio’s future. If you encounter any issues, have suggestions, or would like to request features, please leave a review or contact us directly.</p>
+
+                    <h3>⭐ Thank You for Using MLBB Visual Studio.</h3>
+                    <p>We appreciate your trust in MLBB Visual Studio. Expect consistent updates, enhanced performance, and powerful new features in upcoming releases.</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Ratings & Reviews ></div>
+            <div class="stats-row" style="border: none; padding: 10px 0;">
+                <div style="font-size: 48px; font-weight: bold; color: #FFF; line-height: 1;">-</div>
+                <div style="text-align: right; color: #888;">
+                    <div class="stars" style="font-size: 16px; margin-bottom: 4px;">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+                    <div style="font-size: 12px;">0 Ratings</div>
+                </div>
+            </div>
+            <div class="empty-reviews">
+                No reviews yet. Join the closed beta and be the first to leave feedback!
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
