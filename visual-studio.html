@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLBB Visual Studio - Closed Beta</title>
     <style>
-        /* Premium Dark Theme */
+        /* ==========================================
+           AUTO LIGHT/DARK THEME VARIABLES
+           ========================================== */
+        :root {
+            --bg-color: #F8F9FA;
+            --container-bg: #FFFFFF;
+            --text-primary: #202124;
+            --text-secondary: #5F6368;
+            --border-color: #DADCE0;
+            --divider-color: #E8EAED;
+            --btn-bg: #007BFF;
+            --btn-hover: #0056b3;
+            --btn-text: #FFFFFF;
+            --tutorial-bg: #F8F9FA;
+            --tutorial-border: #F59E0B;
+            --card-border-left: #007BFF;
+            --fade-gradient: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+            --stars-empty: #DADCE0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --container-bg: #1B1B1B;
+                --text-primary: #E3E3E3;
+                --text-secondary: #A0A0A0;
+                --border-color: #2A324A;
+                --divider-color: #2A2A2A;
+                --btn-bg: #007BFF;
+                --btn-hover: #3395ff;
+                --btn-text: #FFFFFF;
+                --tutorial-bg: #242424;
+                --card-border-left: #007BFF;
+                --fade-gradient: linear-gradient(to bottom, rgba(27,27,27,0), rgba(27,27,27,1));
+                --stars-empty: #5F6368;
+            }
+        }
+
+        /* ==========================================
+           BASE LAYOUT (1200px Max Width)
+           ========================================== */
         body {
-            background-color: #121212;
-            color: #E3E3E3;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -16,153 +56,181 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
-            background-color: #1B1B1B;
+            padding: 0 10px;
+            background-color: var(--container-bg);
             min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
         /* Feature Graphic */
         .feature-graphic {
             width: 100%;
-            height: 250px;
+            height: 350px;
             background-color: #1B2236;
-            background-image: url('MLBB%20VS/feature-graphic.png'); /* Banner Image Linked Here */
+            background-image: url('MLBB%20VS/feature-graphic.jpg'); 
             background-size: cover;
             background-position: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .feature-graphic { height: 200px; }
         }
 
         /* App Header */
         .app-header {
             display: flex;
-            padding: 20px;
+            padding: 30px 20px 20px 20px;
             align-items: center;
         }
 
         .app-icon {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 20px;
-            background-color: #2A324A;
-            margin-right: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background-color: var(--border-color);
+            margin-right: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .app-title-area h1 {
-            font-size: 24px;
-            color: #FFFFFF;
-            margin: 0 0 4px 0;
+            font-size: 32px;
+            color: var(--text-primary);
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
         }
 
         .app-title-area p {
-            font-size: 14px;
-            color: #A0A0A0;
+            font-size: 16px;
+            color: var(--text-secondary);
             margin: 0;
         }
 
-        .dev-name {
-            color: #7DD3FC;
-            font-weight: 500;
-        }
-
-        /* Stats Row */
+        /* ==========================================
+           THE 6-ITEM STATS ROW (Desktop & Mobile)
+           ========================================== */
         .stats-row {
             display: flex;
-            justify-content: space-between;
-            padding: 15px 30px;
-            border-bottom: 1px solid #2A2A2A;
-            text-align: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--divider-color);
+            gap: 15px;
         }
 
-        .stat-box {
+        .stat-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            text-align: center;
         }
 
-        .stat-value {
-            font-size: 16px;
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background-color: var(--divider-color);
+        }
+
+        .stat-top {
+            font-size: 20px;
             font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 2px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 24px;
         }
 
-        .stat-label {
-            font-size: 12px;
-            color: #888888;
+        .stat-bottom {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         .stars {
-            color: #888888;
-            font-size: 12px;
+            color: var(--stars-empty);
+            font-size: 16px;
             letter-spacing: 2px;
+            line-height: 24px;
         }
 
-        /* Action Area */
+        /* SVG Icon for Developer */
+        .dev-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .stat-divider { display: none; }
+            .stat-item { width: 30%; margin-bottom: 15px; }
+        }
+
+        /* ==========================================
+           ACTION AREA & TUTORIAL BOX
+           ========================================== */
         .action-area {
-            padding: 20px;
-            text-align: center;
+            padding: 30px 20px;
+            text-align: left;
         }
 
         .btn-install {
             display: inline-block;
-            width: 100%;
-            padding: 14px 0;
-            background-color: #007BFF;
-            color: #FFFFFF;
+            padding: 14px 40px;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
             font-size: 16px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             transition: background 0.2s;
         }
 
         .btn-install:hover {
-            background-color: #0056b3;
+            background-color: var(--btn-hover);
         }
 
-        /* Mini Tutorial Box */
         .tutorial-box {
-            background-color: #242424;
-            border-left: 4px solid #F59E0B;
-            padding: 16px;
+            background-color: var(--tutorial-bg);
+            border-left: 4px solid var(--tutorial-border);
+            padding: 20px;
             border-radius: 6px;
-            text-align: left;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #D1D5DB;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 800px;
         }
 
         .tutorial-box strong {
-            color: #FFFFFF;
-            font-size: 14px;
+            color: var(--text-primary);
+            font-size: 15px;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .tutorial-box ol {
-            margin: 0;
-            padding-left: 18px;
-        }
+        .tutorial-box ol { margin: 0; padding-left: 20px; }
+        .tutorial-box li { margin-bottom: 8px; }
 
-        .tutorial-box li {
-            margin-bottom: 6px;
-        }
-
-        /* Sections */
+        /* ==========================================
+           SECTIONS & SCREENSHOTS
+           ========================================== */
         .section {
             padding: 20px;
-            border-top: 8px solid #121212;
+            max-width: 1000px;
         }
 
         .section-title {
-            font-size: 18px;
-            color: #FFFFFF;
+            font-size: 22px;
+            color: var(--text-primary);
             font-weight: bold;
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
@@ -170,56 +238,93 @@
         .screenshots-container {
             display: flex;
             overflow-x: auto;
-            gap: 12px;
-            padding-bottom: 10px;
+            gap: 16px;
+            padding-bottom: 15px;
             scrollbar-width: none;
         }
-        .screenshots-container::-webkit-scrollbar {
-            display: none;
-        }
+        .screenshots-container::-webkit-scrollbar { display: none; }
 
         .screenshot {
-            width: 140px;
-            height: 280px;
-            background-color: #2A324A;
+            width: 180px;
+            height: 360px;
+            background-color: var(--border-color);
             border-radius: 12px;
             flex-shrink: 0;
             object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Details / Expandable */
-        details {
-            font-size: 14px;
+        /* ==========================================
+           EXPANDABLE ABOUT CARD (CPU A STYLE)
+           ========================================== */
+        .about-card {
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--card-border-left);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            background-color: var(--container-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            max-height: 180px; /* Collapsed height */
+            overflow: hidden;
+            font-size: 15px;
             line-height: 1.6;
-            color: #B0B0B0;
+            color: var(--text-secondary);
+            transition: max-height 0.4s ease;
         }
 
-        summary {
-            font-weight: bold;
-            color: #FFFFFF;
-            cursor: pointer;
-            outline: none;
-            list-style: none;
-            margin-bottom: 10px;
-        }
-        
-        summary::-webkit-details-marker {
-            display: none;
+        .about-content.expanded {
+            max-height: 3000px; /* Expands fully */
         }
 
         .about-content h3 {
-            color: #FFFFFF;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            margin-top: 24px;
+            margin-bottom: 12px;
         }
 
-        /* Reviews placeholder */
+        .about-content strong { color: var(--text-primary); }
+
+        .about-fade {
+            position: absolute;
+            bottom: 50px; /* Sits just above the button */
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: var(--fade-gradient);
+            pointer-events: none;
+        }
+
+        .show-more-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--btn-bg);
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        /* ==========================================
+           EMPTY REVIEWS SECTION
+           ========================================== */
         .empty-reviews {
             text-align: center;
-            padding: 30px 0;
-            color: #888888;
-            font-size: 14px;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -229,25 +334,51 @@
         <div class="feature-graphic"></div>
 
         <div class="app-header">
-            <img src="MLBB%20VS/Picsart_26-02-visual-studio.png" alt="App Icon" class="app-icon"> <div class="app-title-area">
+            <img src="MLBB%20VS/icon.png" alt="App Icon" class="app-icon">
+            <div class="app-title-area">
                 <h1>MLBB Visual Studio</h1>
-                <p class="dev-name">SunDownDeveloper</p>
-                <p>Premium Customization Engine.</p>
+                <p>Ultimate Premium Customization Engine.</p>
             </div>
         </div>
 
         <div class="stats-row">
-            <div class="stat-box">
-                <div class="stat-value">-</div>
-                <div class="stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+            <div class="stat-item">
+                <div class="stat-top">-</div>
+                <div class="stat-bottom stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value">3+</div>
-                <div class="stat-label">Years Old</div>
+            <div class="stat-divider"></div>
+            
+            <div class="stat-item">
+                <div class="stat-top">3+</div>
+                <div class="stat-bottom">Years Old</div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value">No. -</div>
-                <div class="stat-label">Visual Tools</div>
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <div class="stat-top">No. -</div>
+                <div class="stat-bottom">Visual Tools</div>
+            </div>
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <div class="stat-top">
+                    <svg class="dev-icon" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="stat-bottom">SunDownDeveloper</div>
+            </div>
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <div class="stat-top">EN</div>
+                <div class="stat-bottom">+ More</div>
+            </div>
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <div class="stat-top">16.2</div>
+                <div class="stat-bottom">MB</div>
             </div>
         </div>
 
@@ -266,16 +397,6 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Update Log ></div>
-            <details>
-                <summary>Version 1.0.0 beta <span style="float: right; color: #888; font-weight: normal; font-size: 12px;">Just now</span></summary>
-                <p>• Initial BETA release of MLBB Visual Studio.<br>
-                • Added Dual-Injection Engine (SAF & Shizuku) support.<br>
-                • Implemented dynamic tablet-proof UI and ultimate Control Center.</p>
-            </details>
-        </div>
-
-        <div class="section">
             <div class="screenshots-container">
                 <img src="MLBB%20VS/Screenshot_1.jpg" class="screenshot" alt="Screenshot 1">
                 <img src="MLBB%20VS/Screenshot_2.jpg" class="screenshot" alt="Screenshot 2">
@@ -288,10 +409,10 @@
         </div>
 
         <div class="section">
-            <div class="section-title">About this app ></div>
-            <details>
-                <summary>Read full description</summary>
-                <div class="about-content">
+            <div class="section-title">About the App</div>
+            
+            <div class="about-card">
+                <div class="about-content" id="aboutContent">
                     <p>🎨 <strong>Enter the Studio. Remaster Your Experience.</strong></p>
                     <p>Welcome to MLBB Visual Studio, the ultimate premium customization engine built specifically for players who want to elevate their in-game aesthetics. Unlock breathtaking visual effects, custom hero skins, and epic recall animations—all rendered 100% locally on your device with zero risk to your account.</p>
                     <p>Designed by SunDownDeveloper with the same precision and AAA-polish as CPU A, this tool is built for speed, safety, and a flawless user experience.</p>
@@ -314,6 +435,7 @@
 
                     <h3>⚠️ IMPORTANT DISCLAIMER:</h3>
                     <p>MLBB Visual Studio is a third-party local visual modification tool. It is not affiliated with, endorsed by, or officially connected to Moonton or Mobile Legends: Bang Bang. All injected files are local aesthetic modifications only, visible strictly to the user, and provide absolutely no in-game competitive advantage (no damage hacks, no map hacks).</p>
+                    
                     <p>Ready to upgrade your visuals? Download MLBB Visual Studio today and completely redefine your game!</p>
 
                     <h3>🙌 Feedback & Support</h3>
@@ -322,23 +444,50 @@
                     <h3>⭐ Thank You for Using MLBB Visual Studio.</h3>
                     <p>We appreciate your trust in MLBB Visual Studio. Expect consistent updates, enhanced performance, and powerful new features in upcoming releases.</p>
                 </div>
-            </details>
+                
+                <div class="about-fade" id="aboutFade"></div>
+                
+                <button class="show-more-btn" id="showMoreBtn" onclick="toggleAbout()">Show More ▼</button>
+            </div>
         </div>
 
         <div class="section">
             <div class="section-title">Ratings & Reviews ></div>
-            <div class="stats-row" style="border: none; padding: 10px 0;">
-                <div style="font-size: 48px; font-weight: bold; color: #FFF; line-height: 1;">-</div>
-                <div style="text-align: right; color: #888;">
-                    <div class="stars" style="font-size: 16px; margin-bottom: 4px;">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
-                    <div style="font-size: 12px;">0 Ratings</div>
+            
+            <div class="stats-row" style="border: none; padding: 10px 0; justify-content: flex-start; gap: 30px;">
+                <div style="font-size: 64px; font-weight: bold; color: var(--text-primary); line-height: 1;">-</div>
+                <div style="text-align: right; color: var(--text-secondary);">
+                    <div class="stars" style="font-size: 20px; margin-bottom: 4px;">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+                    <div style="font-size: 14px;">0 Ratings</div>
                 </div>
             </div>
+            
+            <div class="section-title" style="font-size: 18px; margin-top: 20px;">Most Helpful Reviews</div>
             <div class="empty-reviews">
                 No reviews yet. Join the closed beta and be the first to leave feedback!
             </div>
         </div>
 
     </div>
+
+    <script>
+        function toggleAbout() {
+            const content = document.getElementById('aboutContent');
+            const fade = document.getElementById('aboutFade');
+            const btn = document.getElementById('showMoreBtn');
+
+            if (content.classList.contains('expanded')) {
+                // Collapse it
+                content.classList.remove('expanded');
+                fade.style.display = 'block';
+                btn.innerHTML = 'Show More ▼';
+            } else {
+                // Expand it
+                content.classList.add('expanded');
+                fade.style.display = 'none';
+                btn.innerHTML = 'Show Less ▲';
+            }
+        }
+    </script>
 </body>
 </html>
