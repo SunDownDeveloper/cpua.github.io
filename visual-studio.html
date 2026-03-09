@@ -23,6 +23,7 @@
             --card-border-left: #007BFF;
             --fade-gradient: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
             --stars-empty: #DADCE0;
+            --icon-color: #007BFF;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -40,6 +41,7 @@
                 --card-border-left: #007BFF;
                 --fade-gradient: linear-gradient(to bottom, rgba(27,27,27,0), rgba(27,27,27,1));
                 --stars-empty: #5F6368;
+                --icon-color: #7DD3FC;
             }
         }
 
@@ -95,6 +97,10 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .app-title-area {
+            flex-grow: 1;
+        }
+
         .app-title-area h1 {
             font-size: 32px;
             color: var(--text-primary);
@@ -108,35 +114,54 @@
             margin: 0;
         }
 
+        /* The Share Button */
+        .share-btn-container {
+            margin-left: 15px;
+            cursor: pointer;
+            color: var(--icon-color);
+            align-self: flex-start;
+            padding-top: 8px;
+        }
+
+        .share-icon {
+            width: 24px;
+            height: 24px;
+        }
+
         /* ==========================================
-           THE 6-ITEM STATS ROW (Desktop & Mobile)
+           THE 6-ITEM STATS ROW (Perfect Scroll & Padding)
            ========================================== */
         .stats-row {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
+            overflow-x: auto;
+            padding: 15px 20px;
             border-bottom: 1px solid var(--divider-color);
-            gap: 15px;
+            scrollbar-width: none;
         }
+        
+        .stats-row::-webkit-scrollbar { display: none; }
 
         .stat-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 120px;
+            padding: 0 28px; /* Breathing room exactly like CPU A */
             text-align: center;
+            flex-shrink: 0; /* Prevents clumping */
         }
 
-        .stat-divider {
-            width: 1px;
-            height: 40px;
-            background-color: var(--divider-color);
+        .stat-header {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
         }
 
-        .stat-top {
+        .stat-value {
             font-size: 20px;
             font-weight: bold;
             color: var(--text-primary);
@@ -147,8 +172,8 @@
             height: 24px;
         }
 
-        .stat-bottom {
-            font-size: 13px;
+        .stat-subtext {
+            font-size: 12px;
             color: var(--text-secondary);
         }
 
@@ -159,7 +184,14 @@
             line-height: 24px;
         }
 
-        /* SVG Icon for Developer */
+        .stat-divider {
+            min-width: 1px;
+            width: 1px;
+            height: 45px;
+            background-color: var(--divider-color);
+            flex-shrink: 0;
+        }
+
         .dev-icon {
             width: 24px;
             height: 24px;
@@ -167,12 +199,11 @@
         }
 
         @media (max-width: 768px) {
-            .stat-divider { display: none; }
-            .stat-item { width: 30%; margin-bottom: 15px; }
+            .stat-item { padding: 0 20px; }
         }
 
         /* ==========================================
-           ACTION AREA & TUTORIAL BOX
+           ACTION AREA (MATCH PARENT BUTTON)
            ========================================== */
         .action-area {
             padding: 30px 20px;
@@ -180,8 +211,11 @@
         }
 
         .btn-install {
-            display: inline-block;
-            padding: 14px 40px;
+            display: block; /* Forces match parent behavior */
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 14px 0;
             background-color: var(--btn-bg);
             color: var(--btn-text);
             font-size: 16px;
@@ -234,7 +268,6 @@
             align-items: center;
         }
 
-        /* Horizontal Scrolling Screenshots */
         .screenshots-container {
             display: flex;
             overflow-x: auto;
@@ -269,7 +302,7 @@
         }
 
         .about-content {
-            max-height: 180px; /* Collapsed height */
+            max-height: 180px;
             overflow: hidden;
             font-size: 15px;
             line-height: 1.6;
@@ -277,9 +310,7 @@
             transition: max-height 0.4s ease;
         }
 
-        .about-content.expanded {
-            max-height: 3000px; /* Expands fully */
-        }
+        .about-content.expanded { max-height: 3000px; }
 
         .about-content h3 {
             color: var(--text-primary);
@@ -292,7 +323,7 @@
 
         .about-fade {
             position: absolute;
-            bottom: 50px; /* Sits just above the button */
+            bottom: 50px;
             left: 0;
             width: 100%;
             height: 80px;
@@ -339,46 +370,59 @@
                 <h1>MLBB Visual Studio</h1>
                 <p>Ultimate Premium Customization Engine.</p>
             </div>
+            <div class="share-btn-container" title="Share">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                    <polyline points="16 6 12 2 8 6"></polyline>
+                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                </svg>
+            </div>
         </div>
 
         <div class="stats-row">
             <div class="stat-item">
-                <div class="stat-top">-</div>
-                <div class="stat-bottom stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+                <div class="stat-header">0 RATINGS</div>
+                <div class="stat-value">-</div>
+                <div class="stat-subtext stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
             </div>
             <div class="stat-divider"></div>
             
             <div class="stat-item">
-                <div class="stat-top">3+</div>
-                <div class="stat-bottom">Years Old</div>
+                <div class="stat-header">AGE</div>
+                <div class="stat-value">3+</div>
+                <div class="stat-subtext">Years Old</div>
             </div>
             <div class="stat-divider"></div>
 
             <div class="stat-item">
-                <div class="stat-top">No. -</div>
-                <div class="stat-bottom">Visual Tools</div>
+                <div class="stat-header">CHART</div>
+                <div class="stat-value">No. -</div>
+                <div class="stat-subtext">Visual Tools</div>
             </div>
             <div class="stat-divider"></div>
 
             <div class="stat-item">
-                <div class="stat-top">
+                <div class="stat-header">DEVELOPER</div>
+                <div class="stat-value">
                     <svg class="dev-icon" viewBox="0 0 24 24">
                         <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
                 </div>
-                <div class="stat-bottom">SunDownDeveloper</div>
+                <div class="stat-subtext">SunDownDeveloper</div>
             </div>
             <div class="stat-divider"></div>
 
             <div class="stat-item">
-                <div class="stat-top">EN</div>
-                <div class="stat-bottom">+ More</div>
+                <div class="stat-header">LANGUAGE</div>
+                <div class="stat-value">EN</div>
+                <div class="stat-subtext">+ More</div>
             </div>
             <div class="stat-divider"></div>
 
             <div class="stat-item">
-                <div class="stat-top">16.2</div>
-                <div class="stat-bottom">MB</div>
+                <div class="stat-header">SIZE</div>
+                <div class="stat-value">16.2</div>
+                <div class="stat-subtext">MB</div>
             </div>
         </div>
 
@@ -446,7 +490,6 @@
                 </div>
                 
                 <div class="about-fade" id="aboutFade"></div>
-                
                 <button class="show-more-btn" id="showMoreBtn" onclick="toggleAbout()">Show More ▼</button>
             </div>
         </div>
@@ -477,12 +520,10 @@
             const btn = document.getElementById('showMoreBtn');
 
             if (content.classList.contains('expanded')) {
-                // Collapse it
                 content.classList.remove('expanded');
                 fade.style.display = 'block';
                 btn.innerHTML = 'Show More ▼';
             } else {
-                // Expand it
                 content.classList.add('expanded');
                 fade.style.display = 'none';
                 btn.innerHTML = 'Show Less ▲';
